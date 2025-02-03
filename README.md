@@ -16,7 +16,7 @@ A cross-platform installer for WasmEdge runtime and plugins, written in Rust.
 ### From Source
 
 ```bash
-git clone https://github.com/Ytemiloluwa/wasmedgeup.git
+git clone https://github.com/Ytemiloluwa/Wasmedgeup.git
 cd wasmedgeup
 cargo install --path .
 ```
