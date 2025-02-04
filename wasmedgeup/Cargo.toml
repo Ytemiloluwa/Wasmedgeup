@@ -2,13 +2,9 @@
 name = "wasmedgeup"
 version = "0.1.0"
 edition = "2021"
-authors = ["WasmEdge Contributors"]
+authors = ["Temiloluwa Yusuf"]
 description = "A cross-platform installer for WasmEdge runtime and plugins"
 license = "Apache-2.0"
-
-[[bin]]
-name = "wasmedgeup"
-path = "wasmedgeup/src/main.rs"
 
 [dependencies]
 clap = { version = "4.5.1", features = ["derive"] }
