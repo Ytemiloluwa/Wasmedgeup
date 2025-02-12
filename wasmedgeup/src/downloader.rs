@@ -2,7 +2,6 @@ use anyhow::{Context, Result};
 use futures_util::StreamExt;
 use indicatif::{ProgressBar, ProgressStyle};
 use reqwest::Client;
-use sha2::{Digest, Sha256};
 use std::path::Path;
 use tokio::fs::File;
 use tokio::io::AsyncWriteExt;
@@ -54,23 +53,6 @@ impl Downloader {
 
         pb.finish_with_message("Download completed");
         Ok(())
-    }
-
-    pub async fn verify_checksum(&self, file_path: &Path, expected_sha256: &str) -> Result<bool> {
-        let mut file = File::open(file_path).await.context("Failed to open file for verification")?;
-        let mut hasher = Sha256::new();
-        let mut buffer = [0; 8192];
-
-        loop {
-            let n = tokio::io::AsyncReadExt::read(&mut file, &mut buffer).await?;
-            if n == 0 {
-                break;
-            }
-            hasher.update(&buffer[..n]);
-        }
-
-        let result = hex::encode(hasher.finalize());
-        Ok(result == expected_sha256)
     }
 
     pub async fn download_json<T: serde::de::DeserializeOwned>(&self, url: &str) -> Result<T> {
