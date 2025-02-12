@@ -1,7 +1,6 @@
 use anyhow::{Context, Result};
 use std::path::{Path, PathBuf};
 use tokio::fs;
-use tokio::io::AsyncReadExt;
 use flate2::read::GzDecoder;
 use tar::Archive;
 use crate::{
